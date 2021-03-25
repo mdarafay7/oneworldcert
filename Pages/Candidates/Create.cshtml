@@ -1,0 +1,72 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using oneworldcert.Areas.Identity.Data;
+@inject UserManager<oneworldcertUser> userManager
+@model oneworldcert.Pages.Candidates.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Candidate</h4>
+<hr />
+<div class="row">
+    @{ 
+        var user = await userManager.GetUserAsync(User);
+        var userId = user?.Email;
+    }
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Candidate.OwnerID" class="control-label"></label>
+                <input asp-for="Candidate.OwnerID" class="form-control" />
+                <span asp-validation-for="Candidate.OwnerID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Candidate.LName" class="control-label"></label>
+                <input asp-for="Candidate.LName" class="form-control" />
+                <span asp-validation-for="Candidate.LName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Candidate.Fname" class="control-label"></label>
+                <input asp-for="Candidate.Fname" class="form-control" />
+                <span asp-validation-for="Candidate.Fname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Candidate.MInit" class="control-label"></label>
+                <input asp-for="Candidate.MInit" class="form-control" />
+                <span asp-validation-for="Candidate.MInit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Candidate.PhoneNumber" class="control-label"></label>
+                <input asp-for="Candidate.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Candidate.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Candidate.Address.Street" class="control-label"></label>
+                <input asp-for="Candidate.Address.Street" . class="form-control" />
+                <span asp-validation-for="Candidate.Address.Street" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Candidate.Address.City" class="control-label"></label>
+                <input asp-for="Candidate.Address.City" . class="form-control" />
+                <span asp-validation-for="Candidate.Address.City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
